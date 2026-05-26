@@ -276,6 +276,20 @@ describe('PATCH /sign-in-exp', () => {
     });
   });
 
+  it('should allow hideLogtoBranding updates in OSS', async () => {
+    const response = await signInExperienceRequester.patch('/sign-in-exp').send({
+      hideLogtoBranding: true,
+    });
+
+    expect(response).toMatchObject({
+      status: 200,
+      body: {
+        ...mockSignInExperience,
+        hideLogtoBranding: true,
+      },
+    });
+  });
+
   it('should reject adaptive mfa enablement when mfa is disabled', async () => {
     const adaptiveMfa = { enabled: true };
 

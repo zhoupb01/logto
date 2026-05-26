@@ -124,6 +124,36 @@ export const defaultSubscriptionQuota: SubscriptionQuota = {
   customDomainsLimit: 1,
 };
 
+/** Unlocked quota defaults for OSS Console. */
+export const unlockedOssSubscriptionQuota: SubscriptionQuota = {
+  mauLimit: null,
+  tokenLimit: null,
+  applicationsLimit: null,
+  machineToMachineLimit: null,
+  resourcesLimit: null,
+  scopesPerResourceLimit: null,
+  socialConnectorsLimit: null,
+  userRolesLimit: null,
+  machineToMachineRolesLimit: null,
+  scopesPerRoleLimit: null,
+  hooksLimit: null,
+  auditLogsRetentionDays: null,
+  mfaEnabled: true,
+  organizationsLimit: null,
+  enterpriseSsoLimit: null,
+  thirdPartyApplicationsLimit: null,
+  tenantMembersLimit: null,
+  customJwtEnabled: true,
+  subjectTokenEnabled: true,
+  bringYourUiEnabled: true,
+  collectUserProfileEnabled: true,
+  passkeySignInEnabled: true,
+  idpInitiatedSsoEnabled: true,
+  samlApplicationsLimit: null,
+  securityFeaturesEnabled: true,
+  customDomainsLimit: null,
+};
+
 export const defaultSubscriptionUsage: SubscriptionCountBasedUsage = {
   applicationsLimit: 0,
   machineToMachineLimit: 0,

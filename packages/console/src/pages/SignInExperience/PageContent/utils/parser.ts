@@ -155,6 +155,7 @@ export const sieFormDataParser = {
     formData: SignInExperienceForm,
     { isCloud = true }: { isCloud?: boolean } = {}
   ): SignInExperiencePageManagedData => {
+    void isCloud;
     const {
       branding,
       createAccountEnabled,
@@ -172,7 +173,7 @@ export const sieFormDataParser = {
       socialSignIn,
       signInMode: createAccountEnabled ? SignInMode.SignInAndRegister : SignInMode.SignIn,
       customCss: customCss?.length ? customCss : null,
-      ...conditional(isCloud && { hideLogtoBranding }),
+      hideLogtoBranding,
     };
   },
 };
@@ -199,6 +200,7 @@ export const signInExperienceToUpdatedDataParser = (
   data: SignInExperience,
   { isCloud = true }: { isCloud?: boolean } = {}
 ): SignInExperiencePageManagedData => {
+  void isCloud;
   const {
     signUp,
     // Start: Remove the omitted fields from the data
@@ -219,6 +221,6 @@ export const signInExperienceToUpdatedDataParser = (
       ...signUp,
       secondaryIdentifiers: signUp.secondaryIdentifiers ?? [],
     },
-    ...conditional(isCloud && { hideLogtoBranding }),
+    hideLogtoBranding,
   };
 };

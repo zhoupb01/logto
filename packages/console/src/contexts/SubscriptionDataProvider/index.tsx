@@ -6,7 +6,9 @@ import {
   defaultTenantResponse,
   defaultSubscriptionQuota,
   defaultSubscriptionUsage,
+  unlockedOssSubscriptionQuota,
 } from '@/consts';
+import { isCloud } from '@/consts/env';
 
 import { type FullContext } from './types';
 
@@ -22,8 +24,8 @@ export const SubscriptionDataContext = createContext<FullContext>({
   /* ==== For new pricing model ==== */
   logtoSkus: [],
   currentSku: defaultLogtoSku,
-  currentSubscriptionQuota: defaultSubscriptionQuota,
-  currentSubscriptionBasicQuota: defaultSubscriptionQuota,
+  currentSubscriptionQuota: isCloud ? defaultSubscriptionQuota : unlockedOssSubscriptionQuota,
+  currentSubscriptionBasicQuota: isCloud ? defaultSubscriptionQuota : unlockedOssSubscriptionQuota,
   currentSubscriptionUsage: defaultSubscriptionUsage,
   currentSubscriptionResourceScopeUsage: {},
   currentSubscriptionRoleScopeUsage: {},

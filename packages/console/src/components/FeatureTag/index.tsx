@@ -90,6 +90,10 @@ function FeatureTag(props: Props) {
 
   const { isVisible } = props;
 
+  if (!isCloud) {
+    return null;
+  }
+
   // Dev tenant should always see the tag since they have access to almost all features, and it's
   // useful for developers to know which features need to be paid for in production.
   if (!isDevTenant && !isVisible) {

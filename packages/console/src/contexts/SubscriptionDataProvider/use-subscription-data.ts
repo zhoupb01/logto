@@ -9,6 +9,7 @@ import {
   defaultTenantResponse,
   defaultSubscriptionQuota,
   defaultSubscriptionUsage,
+  unlockedOssSubscriptionQuota,
 } from '@/consts';
 import { isCloud } from '@/consts/env';
 import { TenantsContext } from '@/contexts/TenantsProvider';
@@ -62,6 +63,7 @@ const useSubscriptionData: () => SubscriptionContext & { isLoading: boolean } = 
     () => logtoSkus.find((logtoSku) => logtoSku.id === currentTenant?.planId) ?? defaultLogtoSku,
     [currentTenant?.planId, logtoSkus]
   );
+  const defaultQuota = isCloud ? defaultSubscriptionQuota : unlockedOssSubscriptionQuota;
 
   useEffect(() => {
     if (subscriptionUsageData?.quota) {
@@ -79,8 +81,8 @@ const useSubscriptionData: () => SubscriptionContext & { isLoading: boolean } = 
       currentSubscription: currentSubscription ?? defaultTenantResponse.subscription,
       onCurrentSubscriptionUpdated: mutateSubscription,
       mutateSubscriptionQuotaAndUsages,
-      currentSubscriptionQuota: subscriptionUsageData?.quota ?? defaultSubscriptionQuota,
-      currentSubscriptionBasicQuota: subscriptionUsageData?.basicQuota ?? defaultSubscriptionQuota,
+      currentSubscriptionQuota: subscriptionUsageData?.quota ?? defaultQuota,
+      currentSubscriptionBasicQuota: subscriptionUsageData?.basicQuota ?? defaultQuota,
       currentSubscriptionUsage: subscriptionUsageData?.usage ?? defaultSubscriptionUsage,
       currentSubscriptionResourceScopeUsage: subscriptionUsageData?.resources ?? {},
       currentSubscriptionRoleScopeUsage: subscriptionUsageData?.roles ?? {},
@@ -94,6 +96,7 @@ const useSubscriptionData: () => SubscriptionContext & { isLoading: boolean } = 
       logtoSkus,
       mutateSubscription,
       mutateSubscriptionQuotaAndUsages,
+      defaultQuota,
       subscriptionUsageData?.quota,
       subscriptionUsageData?.basicQuota,
       subscriptionUsageData?.resources,
